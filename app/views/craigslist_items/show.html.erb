@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category:</b>
+  <%= @craigslist_item.category %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @craigslist_item.title %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @craigslist_item.price %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @craigslist_item.location %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @craigslist_item.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_craigslist_item_path(@craigslist_item) %> |
+<%= link_to 'Back', craigslist_items_path %>

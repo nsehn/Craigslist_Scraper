@@ -1,0 +1,31 @@
+<h1>Listing craigslist_items</h1>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Location</th>
+    <th>Url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @craigslist_items.each do |craigslist_item| %>
+  <tr>
+    <td><%= craigslist_item.category %></td>
+    <td><%= craigslist_item.title %></td>
+    <td><%= craigslist_item.price %></td>
+    <td><%= craigslist_item.location %></td>
+    <td><%= craigslist_item.url %></td>
+    <td><%= link_to 'Show', craigslist_item %></td>
+    <td><%= link_to 'Edit', edit_craigslist_item_path(craigslist_item) %></td>
+    <td><%= link_to 'Destroy', craigslist_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Craigslist item', new_craigslist_item_path %>
