@@ -1,9 +1,9 @@
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../../config/environment.rb', __FILE__)
 
-puts 'Test!'
+puts "#{File.expand_path('../../config/environment.rb', __FILE__)}"
 
 url = "http://sfbay.craigslist.org/bia/"
-scraper = CraigslistScraper.new(url)
+scraper = CraigslistScraperScript.new(url)
 
 scraper.get_data
 
