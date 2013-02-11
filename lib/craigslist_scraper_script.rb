@@ -1,14 +1,14 @@
 require 'nokogiri' #scraping/parsing library
 require 'open-uri' #part of library that allows user to download webpage
 
-class CraigslistScraper
+class CraigslistScraperScript
 
 	def initialize(url)
 		@data = Nokogiri::HTML(open(url))
 	end
 
 	def get_data
-		rows = data.css('.row')
+		rows = @data.css('.row')
 
 		rows.each do |row|
 			category = row.at_css('.itemcg').text
