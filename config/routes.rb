@@ -1,4 +1,9 @@
 CraigslistScraper::Application.routes.draw do
+  devise_for :users
+
+  resources :users
+
+
   resources :craigslist_items
 
 
