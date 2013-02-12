@@ -15,7 +15,8 @@
     <td><%= search.category %></td>
     <td><%= search.max_price %></td>
     <td><%= search.location %></td>
-    <td><a href=<%= search.get_url() %>>Go to Results</a></td>
+    <td><%= link_to 'Go to Results', craigslist_items_path(:search_url => search.get_url()) %></td>
+    <!-- The link_to goes to the searches controller to see what happens next. The controller will direct you to the correct view. -->
     <td><%= link_to 'Show', search %></td>
     <td><%= link_to 'Edit', edit_search_path(search) %></td>
     <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>

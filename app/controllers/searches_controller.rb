@@ -2,7 +2,8 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
+    # index run first by convention
+    @searches = Search.all #Search means model search.rb. Search.all gets all of the rows from the searches table in sql.
 
     respond_to do |format|
       format.html # index.html.erb

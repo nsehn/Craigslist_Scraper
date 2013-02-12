@@ -2,8 +2,11 @@ class CraigslistItemsController < ApplicationController
   # GET /craigslist_items
   # GET /craigslist_items.json
   def index
-    @craigslist_items = CraigslistItem.all
+    url = params[:search_url]
+    scraper = CraigslistScraperScript.new(url)
+    scraper.get_data
 
+    @craigslist_items = CraigslistItem.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @craigslist_items }
