@@ -3,8 +3,12 @@ class SearchesController < ApplicationController
   # GET /searches.json
   def index
     # index run first by convention
-    @searches = Search.all #Search means model search.rb. Search.all gets all of the rows from the searches table in sql.
+    #helper_method :current_user
 
+    # self.current_user = user
+    # user.searches.create
+    @searches = Search.all #Search means model search.rb. Search.all gets all of the rows from the searches table in sql.
+    #Search.all should become something like Search.matches(current_user) OR current_user.searches. Right now this is returning every single search. We want it to be used for multiple users so the information returned should be for the specific user. Arel - relational algebra
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @searches }
