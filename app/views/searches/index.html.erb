@@ -5,7 +5,7 @@
     <th>Category</th>
     <th>Max price</th>
     <th>Location</th>
-    <th></th>
+    <th>Link to Search</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,6 +15,7 @@
     <td><%= search.category %></td>
     <td><%= search.max_price %></td>
     <td><%= search.location %></td>
+    <td><a href=<%= search.get_url() %>>Go to Results</a></td>
     <td><%= link_to 'Show', search %></td>
     <td><%= link_to 'Edit', edit_search_path(search) %></td>
     <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
