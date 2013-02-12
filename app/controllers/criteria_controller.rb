@@ -1,0 +1,2 @@
+class CriteriaController < ApplicationController
+end
