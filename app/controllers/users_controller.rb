@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   include user_signed_in?
   include current_user
   def index
-    before_filter :authenticate_user!
     @users = User.all
 
     respond_to do |format|
