@@ -12,7 +12,10 @@
 
 <% @searches.each do |search| %>
   <tr>
-    <td><%= search.category %></td>
+    <td><%= search.category %></td> 
+    <!-- change to title -->
+    <!-- change to url -->
+    <!-- doing this bc we're making it act like the bookmarklet -->
     <td><%= search.max_price %></td>
     <td><%= search.location %></td>
     <td><%= link_to 'Go to Results', craigslist_items_path(:search_url => search.get_url()) %></td>
