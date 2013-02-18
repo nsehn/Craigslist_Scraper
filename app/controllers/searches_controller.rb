@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     # index run first by convention
     #helper_method :current_user
 
-    # self.current_user = user
+    @user = self.current_user
     # user.searches.create
     @searches = Search.all #Search means model search.rb. Search.all gets all of the rows from the searches table in sql.
     #Search.all should become something like Search.matches(current_user) OR current_user.searches. Right now this is returning every single search. We want it to be used for multiple users so the information returned should be for the specific user. Arel - relational algebra

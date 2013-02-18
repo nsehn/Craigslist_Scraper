@@ -12,6 +12,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def current_user
+  @current_user ||= login_from_session || login_from_cookie || login_from_params)
+  end
+  
+  def login_from_session
+  User.find_by_id(session[:id])
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
