@@ -3,8 +3,10 @@ class CraigslistItemsController < ApplicationController
   # GET /craigslist_items.json
   def index
     url = params[:search_url]
-    scraper = CraigslistScraperScript.new(url)
-    scraper.get_data
+    if url != nil
+      scraper = CraigslistScraperScript.new(url)
+      scraper.get_data
+    end
 
     @craigslist_items = CraigslistItem.all
     respond_to do |format|
