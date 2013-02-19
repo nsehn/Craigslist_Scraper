@@ -1,6 +1,6 @@
 class BookmarkletsController < ApplicationController
 # run the bookmarklet.html.erb page here
-
+ layout 'application'
 def index
     # index run first by convention
     #helper_method :current_user

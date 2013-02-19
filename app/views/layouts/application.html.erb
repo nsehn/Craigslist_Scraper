@@ -7,8 +7,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+<style>
+body
+{
+background-image:url('http://www.123freevectors.com/wp-content/uploads/people_big/119_Shopping_Girls_Vector.png');
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position:400px 100px; 
+background-color:white;
+}
+div {
+	padding: 20px;
+	
+}
+{
+background-color:#d0e4fe;
+}
+.signin { /*the dot means this style applies to elements with class="listItem"*/
+
+}
+h1 {
+	color: green;
+	font-style:italic;
+	font-family:"Georgia", Times, serif;
+	font-size:30px;
+	text-align: center;
+}
+
+</style>
+
+	<h1>
+		Craigslist Scraper
+	</h1>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>
