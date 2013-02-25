@@ -1,0 +1,31 @@
+if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too  
+    script = document.createElement( 'script' );  
+   	script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';  
+    script.onload=releasetheKraken;  
+    document.body.appendChild(script);  
+}  
+else {  
+    createAndRenderPopout();  
+}  
+
+// Create a divs, containing a form and a submit button. 
+function createDivs() {
+		
+}
+
+// Set the CSS of the divs and form
+function displayDivs() {
+	
+}
+
+//AJAX post form
+$("myForm").submit(function() {
+	
+	
+})
+
+function createAndRenderPopout() {
+		createDivs();
+		displayDivs();  
+	    <!-- javascript form -->
+}

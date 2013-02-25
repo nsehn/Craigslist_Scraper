@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212061248) do
+ActiveRecord::Schema.define(:version => 20130222021539) do
 
   create_table "craigslist_items", :force => true do |t|
     t.string   "category"
@@ -23,25 +23,18 @@ ActiveRecord::Schema.define(:version => 20130212061248) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "criteria", :force => true do |t|
-    t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "searches", :force => true do |t|
-    t.string   "category"
-    t.integer  "max_price"
-    t.string   "location"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "url"
   end
 
-  create_table "user_criteria", :force => true do |t|
+  create_table "user_searches", :force => true do |t|
     t.string   "user_id"
-    t.string   "criteria_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "search_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   create_table "users", :force => true do |t|
