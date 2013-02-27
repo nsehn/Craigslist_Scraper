@@ -1,3 +1,11 @@
+<head>
+	<title>Bookmarked Search
+	</title>
+		
+</head>
+	<!-- <script src="/js/jquery-1.8.2.min.js"></script -->
+	
+<body>
 if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too  
     script = document.createElement( 'script' );  
    	script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';  
@@ -8,20 +16,49 @@ else {
     createAndRenderPopout();  
 }  
 
-// Create a divs, containing a form and a submit button. 
+<!-- Create a divs, containing a form and a submit button. --> 
 function createDivs() {
+		<h1>
+			Name your bookmark!
+		</h1>
+	
+		<div class="centered_div">
+			<form id="BookmarkName" action="form_action.asp">
+				<input type="text" name="" /><br>
+  				<!-- the data's name is domain which is what we are POSTing to /whois -->
+				<input type="button" onclick="formSubmit()" value="Submit form" /> 
+			</form>
+		</div>
+	
+</body>
+
 		
 }
+<!-- Set the CSS of the divs and form -->
+<style>
+	div {
+		padding: 20px;
+	}
 
-// Set the CSS of the divs and form
+	h1 {
+		text-align: center;
+	}
+	
+	.centered_div{
+	  width: 280px;
+ 	 margin-left: auto;
+ 	 margin-right:  auto;
+	}
+</style>
+
 function displayDivs() {
 	
 }
 
-//AJAX post form
-$("myForm").submit(function() {
+<!-- AJAX post form -->
+$("BookmarkName").submit(function() {
 	
-	
+
 })
 
 function createAndRenderPopout() {
