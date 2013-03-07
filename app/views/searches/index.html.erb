@@ -1,3 +1,5 @@
+<% if @searches.present? %>
+
 <h1 align="left">Listing searches</h1>
 
 <table>
@@ -29,3 +31,11 @@
 
 <%= link_to 'New Search', new_search_path %>
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+<% else %>
+<!-- divs of the bookmarklet -->
+<%= @url %>
+<%= @page_title %>
+
+<%= link_to("Save this search", bookmarklet_link_url) %>
+<% end %>
