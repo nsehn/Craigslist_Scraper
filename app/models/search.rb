@@ -7,8 +7,8 @@ class Search < ActiveRecord::Base #class Search is an object (a class object). I
   accepts_nested_attributes_for :user_searches
 
 
-  def get_url()
-  "http://sfbay.craigslist.org/search/" + self.category + "/" + self.location + "?zoomToPosting=&altView=&query=&srchType=A&minAsk=&maxAsk=" + self.max_price.to_s
+  # def get_url()
+  # "http://sfbay.craigslist.org/search/" + self.category + "/" + self.location + "?zoomToPosting=&altView=&query=&srchType=A&minAsk=&maxAsk=" + self.max_price.to_s
 
-  end
+  # end
 end
