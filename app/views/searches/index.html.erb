@@ -4,10 +4,10 @@
 
 <table>
   <tr>
-    <th>Category</th>
-    <th>Max price</th>
-    <th>Location</th>
-    <th>Link to Search</th>
+    <th>URL</th>
+    <th>All Items</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -20,8 +20,6 @@
     <!-- doing this bc we're making it act like the bookmarklet -->
     <td><%= link_to 'Go to Results', craigslist_items_path(:search_url => search.url) %></td>
     <!-- The link_to goes to the searches controller to see what happens next. The controller will direct you to the correct view. -->
-    <td><%= link_to 'Show', search %></td>
-    <td><%= link_to 'Edit', edit_search_path(search) %></td>
     <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

@@ -12,8 +12,7 @@ else {
 
 function createDivs() {
 	
-        $("body").append("<div id=\"bookmark\" style=\"width:300px; margin:0 auto; height:200px; background-color:green; text-align:center; box-shadow:10px 10px 5px #888888;\"> Insert form into this box </div>")
-
+        $("body").append("<div id=\"bookmark\" style=\"width:300px; margin:0 auto; height:200px; background-color:green; text-align:center; box-shadow:10px 10px 5px #888888;\"> <form name=\"Bookmark\" action=\"http://localhost:3000/searches\" method=\"post\"> Bookmark Name: <input type=\"text\" name=\"bookmarkname\"><br><input type=\"checkbox\" name=\"sms\" value=\"SMS\">Notify me via SMS<br><input type=\"checkbox\" name=\"email\" value=\"Email\">Notify me via email<br><input type=\"hidden\" name=\"url\" value=\"" + window.location.href + "\"><input type=\"submit\" value=\"Submit\"></form></div>")
 		
 	}
 
