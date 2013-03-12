@@ -12,13 +12,72 @@ else {
 
 var bookmark_insides;
 
-function createDivs() {
-	bookmark_insides = "<div id=\"nishabookmark_lightbox\" style=\"width:100%; height:100%; background-color:rgba(0,0,0,0.5); position:fixed; top:0; left:0;\"> <div id=\"bookmark\" style=\"width:300px; height:200px; margin:0 auto; background-color:#fff; border:1px solid #ccc; border-radius:5px; border-top:none; padding:25px; position:fixed; left:40%; top:40%; text-align:center; box-shadow:0 0 25px #111;\"> <form name=\"Bookmark\" action=\"http://localhost:3000/searches\" method=\"post\"> Bookmark Name: <input type=\"text\" name=\"bookmarkname\"><br><input type=\"checkbox\" name=\"sms\" value=\"SMS\">Notify me via SMS<br><input type=\"checkbox\" name=\"email\" value=\"Email\">Notify me via email<br><input type=\"hidden\" name=\"url\" value=\"" + window.location.href + "\"><input type=\"submit\" value=\"Submit\"></form></div></div>";
+function createStyles() {
+	return $( "<style>" ).append(
+		"#nishabookmark_lightbox { width:100%;							\
+								   height:100%; 						\
+								   background-color:rgba(0,0,0,0.5); 	\
+								   position:fixed; 						\
+								   top:0; 								\
+								   left:0; 								\
+								}										\
+		#bookmark { width:300px; 										\
+					height:200px; 										\
+					margin:0 auto; 										\
+					background-color:#fff; 								\
+					border:1px solid #ccc; 								\
+					border-radius:5px; 									\
+					border-top:none; 									\
+					padding:25px; 										\
+					position:fixed; 									\
+					left:40%; 											\
+					top:40%; 											\
+					text-align:center; 									\
+					box-shadow:0 0 25px #111;							\
+		}"
+	)
 
 }
+function createDivs() {
+	var $div = $("<div></div>")
+			.attr("id", "nishabookmark_lightbox")
+
+	$div.append($("<div></div>").attr("id", "bookmark"));
+	
+	$div.find("#bookmark").append($("<form></form>")
+										.attr("name", "bookmark")
+										.attr("method", "post")
+										.attr("action", "http://localhost:3000/searches")	
+										);
+	var $form = $div.find("form")
+	//			.attr("name", "bookmark")
+	//			.attr("method", "post")
+	//			.attr("action", "http://localhost:3000/searches")
+
+	$form.append("Bookmark Name: <input type=\"text\" name=\"bookmarkname\"><br>")
+	$form.append("<input type=\"hidden\" name=\"authenticity_token\" value=\"<%=form_authenticity_token()%>\">")
+	$form.append("<input type=\"checkbox\" name=\"sms\" value=\"SMS\">Notify me via SMS<br>")
+	$form.append("<input type=\"checkbox\" name=\"email\" value=\"Email\">Notify me via email<br>")
+	$form.append("<input type=\"hidden\" name=\"url\" value=\"" + window.location.href + "\">")
+	$form.append("<input type=\"submit\" value=\"Submit\">")
+
+	return $div
+}
+
+$("#bookmark").submit(function(){
+	//Trigger AJAX here
+	// then hide / close the pop out on success.
+	// Additionally, your element names of "#bookmark" aren't very unique. You might run
+	// into ID colissions with peoples pages.
+	//
+	// you want to use $(this).attr("action") to get the URL you're posting to.
+	// in the above, "this" is the form that was just submitted.
+	// return false;
+})
 
 function displayDivs(){
-	$("body").append(bookmark_insides);
+	$("head").append(createStyles());
+	$("body").append(createDivs());
 		
 
 }

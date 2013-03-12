@@ -45,7 +45,8 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new(params[:url])
+    @search = Search.new
+    @search.url = params[:url]
     puts params
 
     respond_to do |format|
@@ -62,7 +63,7 @@ class SearchesController < ApplicationController
   # PUT /searches/1
   # PUT /searches/1.json
   def update
-    @search = Search.find(params[:id])
+    @search = Search.find(params[:url => @url])
 
     respond_to do |format|
       if @search.update_attributes(params[:search])
