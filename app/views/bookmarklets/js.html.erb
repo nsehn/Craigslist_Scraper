@@ -63,8 +63,43 @@ function createDivs() {
 
 	return $div
 }
-
+	var request; //variable to hold request
+//bind request to the submit event of the bookmark form
 $("#bookmark").submit(function(){
+	if (request){
+		request.abort(); //abort any pending request
+	}
+
+	var $form = $(this);
+	var $inputs = $form.find(':input').val();
+	var serializedData = $form.serialize();
+
+	$inputs.prop("disabled", true);
+
+	var request = $.ajax({
+		type:'POST',
+		url: 'http://localhost:3000/searches',
+		xhrFields: {withCredentials: true}, //keeps the cookies when crossing domains
+		success: function(){
+			success = true;
+			console.log("Hooray, it worked!");
+		},
+		data: serializedData
+	});
+
+	// request.fail(function (response, textStatus, jqXHR){
+	// 	console.error("The following error has occured): "+
+	// 	textStatus, errorThrown
+	// 	);
+
+		request.always(function (){
+			$inputs.prop("disabled", false);
+	});
+
+		event.preventDefault();
+	});
+
+
 	//Trigger AJAX here
 	// then hide / close the pop out on success.
 	// Additionally, your element names of "#bookmark" aren't very unique. You might run
@@ -72,20 +107,18 @@ $("#bookmark").submit(function(){
 	//
 	// you want to use $(this).attr("action") to get the URL you're posting to.
 	// in the above, "this" is the form that was just submitted.
-	// return false;
-})
 
 function displayDivs(){
 	$("head").append(createStyles());
 	$("body").append(createDivs());
-		
+
 
 }
 
 function createAndRenderPopout() {
-			if ($("#bookmark").length == 0){
-				createDivs();
-				displayDivs();
+	if ($("#bookmark").length == 0){
+		createDivs();
+		displayDivs();
 
 	}
 }
