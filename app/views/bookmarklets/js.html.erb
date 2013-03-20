@@ -1,5 +1,3 @@
-
-
 if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too  
 	script = document.createElement( 'script' );  
 script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';  
@@ -69,34 +67,35 @@ $("#bookmark").submit(function(){
 	if (request){
 		request.abort(); //abort any pending request
 	}
-
+//try to send url to searches table
 	var $form = $(this);
 	var $inputs = $form.find(':input').val();
 	var serializedData = $form.serialize();
 
-	$inputs.prop("disabled", true);
-
+	$inputs.prop("disabled", true); //cannot enter information in the bookmark name as the ajax request is happening
+//need to separate this post requests...i think...
 	var request = $.ajax({
 		type:'POST',
 		url: 'http://localhost:3000/searches',
 		xhrFields: {withCredentials: true}, //keeps the cookies when crossing domains
 		success: function(){
 			success = true;
-			console.log("Hooray, it worked!");
+			$("#bookmark").hide();
 		},
 		data: serializedData
 	});
 
-	// request.fail(function (response, textStatus, jqXHR){
-	// 	console.error("The following error has occured): "+
-	// 	textStatus, errorThrown
-	// 	);
+	request.fail(function (response, textStatus, jqXHR){
+		console.error("There has been an error: "+
+		textStatus, errorThrown //error will be logged
+	);
+	}	);
 
 		request.always(function (){
-			$inputs.prop("disabled", false);
+			$inputs.prop("disabled", false); //allows us to try again after it has failed
 	});
 
-		event.preventDefault();
+		return false; //do not want the form to be posted by default
 	});
 
 
