@@ -37,66 +37,66 @@ function createStyles() {
 
 }
 function createDivs() {
-	var $div = $("<div></div>")
-			.attr("id", "nishabookmark_lightbox")
+	var $form = $("<form></form>")
+				.attr("name", "bookmark")
+				.attr("method", "post")
+				.attr("action", "http://localhost:3000/searches");	
+				 //these attributes are attributes of the form
 
-	$div.append($("<div></div>").attr("id", "bookmark"));
+	$form.append("Bookmark Name: <input type=\"text\" name=\"bookmarkname\"><br>");
+	$form.append("<input type=\"hidden\" name=\"authenticity_token\" value=\"<%=form_authenticity_token()%>\">");
+	$form.append("<input type=\"checkbox\" name=\"sms\" value=\"SMS\">Notify me via SMS<br>");
+	$form.append("<input type=\"checkbox\" name=\"email\" value=\"Email\">Notify me via email<br>");
+	$form.append("<input type=\"hidden\" name=\"url\" value=\"" + window.location.href + "\">");
+	$form.append("<input type=\"submit\" value=\"Submit\">"); //this is the form
+
+	var $bookmark = $("<div></div>").attr("id", "bookmark");
 	
-	$div.find("#bookmark").append($("<form></form>")
-										.attr("name", "bookmark")
-										.attr("method", "post")
-										.attr("action", "http://localhost:3000/searches")	
-										);
-	var $form = $div.find("form")
-	//			.attr("name", "bookmark")
-	//			.attr("method", "post")
-	//			.attr("action", "http://localhost:3000/searches")
+	$bookmark.append($form); //appends the form to the bookmark box
 
-	$form.append("Bookmark Name: <input type=\"text\" name=\"bookmarkname\"><br>")
-	$form.append("<input type=\"hidden\" name=\"authenticity_token\" value=\"<%=form_authenticity_token()%>\">")
-	$form.append("<input type=\"checkbox\" name=\"sms\" value=\"SMS\">Notify me via SMS<br>")
-	$form.append("<input type=\"checkbox\" name=\"email\" value=\"Email\">Notify me via email<br>")
-	$form.append("<input type=\"hidden\" name=\"url\" value=\"" + window.location.href + "\">")
-	$form.append("<input type=\"submit\" value=\"Submit\">")
+	var $div = $("<div></div>").attr("id", "nishabookmark_lightbox"); //makes the big div that holds the form and bookmark
 
+	$div.append($bookmark); //appends the bookmark (which includes the form) to this encapsulating div
+	
 	return $div
 }
-	var request; //variable to hold request
-//bind request to the submit event of the bookmark form
-$("#bookmark").submit(function(){
-	if (request){
-		request.abort(); //abort any pending request
-	}
-//try to send url to searches table
-	var $form = $(this);
-	var $inputs = $form.find(':input').val();
-	var serializedData = $form.serialize();
+// 	var request; //variable to hold request
+// //bind request to the submit event of the bookmark form
+// $("#bookmark").submit(function(){
+// 	if (request){
+// 		request.abort(); //abort any pending request
+// 	}
+// //try to send url to searches table
+// 	var $form = $(this);
+// 	var $inputs = $form.find(':input').val();
+// 	var serializedData = $form.serialize();
 
-	$inputs.prop("disabled", true); //cannot enter information in the bookmark name as the ajax request is happening
-//need to separate this post requests...i think...
-	var request = $.ajax({
-		type:'POST',
-		url: 'http://localhost:3000/searches',
-		xhrFields: {withCredentials: true}, //keeps the cookies when crossing domains
-		success: function(){
-			success = true;
-			$("#bookmark").hide();
-		},
-		data: serializedData
-	});
+// 	$inputs.prop("disabled", true); //cannot enter information in the bookmark name as the ajax request is happening
+// //need to separate this post requests...i think...
+// 	var request = $.ajax({
+// 		type:'POST',
+// 		url: 'http://localhost:3000/searches',
+// 		xhrFields: {withCredentials: true}, //keeps the cookies when crossing domains
+// 		success: function(){
+// 			success = true;
+// 			$("#bookmark").hide();
+// 		},
+// 		data: serializedData
+// 	});
 
-	request.fail(function (response, textStatus, jqXHR){
-		console.error("There has been an error: "+
-		textStatus, errorThrown //error will be logged
-	);
-	}	);
+// 	request.fail(function (response, textStatus, jqXHR){
+// 		console.error("There has been an error: "+
+// 		textStatus, errorThrown //error will be logged
+// 	);
+// 	}	);
 
-		request.always(function (){
-			$inputs.prop("disabled", false); //allows us to try again after it has failed
-	});
+// 		request.always(function (){
+// 			$inputs.prop("disabled", false); //allows us to try again after it has failed
+// 	});
 
-		return false; //do not want the form to be posted by default
-	});
+// 		return false; //do not want the form to be posted by default
+// 	});
+
 
 
 	//Trigger AJAX here
