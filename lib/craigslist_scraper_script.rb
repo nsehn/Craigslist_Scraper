@@ -9,15 +9,21 @@ class CraigslistScraperScript
 
 	def get_data
 		rows = @data.css('.row')
-
+	
 		rows.each do |row|
-			category = row.at_css('.itemcg').text
-			title = row.at_css('a').text
-			price = row.at_css('.itempp').text.delete(" $").to_i
-			location = row.at_css('.itempn').text
-			link = row.at_css('a')['href']
+			category = row.at_css('.gc').try(:text)
+			title = row.at_css('.pl').at_css('a').try(:text)
+			itempnr = row.at_css('.itempnr')
+			price = itempnr.at_css('.itempp').text.delete(" $").to_i
+			location = itempnr.at_css('font').try(:text)
+			link = row.at_css('.pl').at_css('a')['href']
 			item = CraigslistItem.new(:category => category, :title => title, :price => price, :location => location, :url => link)
-			item.save
+			
+			if item.save
+				puts "Items were saved"
+			else
+				puts item.errors
+			end
 		end
 	end
 
