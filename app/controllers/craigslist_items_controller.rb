@@ -45,7 +45,10 @@ class CraigslistItemsController < ApplicationController
   # POST /craigslist_items
   # POST /craigslist_items.json
   def create
-    @craigslist_item = CraigslistItem.new(params[:craigslist_item])
+    @craigslist_item = CraigslistItem.find(params[:url])
+    if @craigslist_item.nil?
+      @craigslist_item = CraigslistItem.new(params[:craigslist_item])
+    end
 
     respond_to do |format|
       if @craigslist_item.save

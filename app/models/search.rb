@@ -3,6 +3,7 @@ class Search < ActiveRecord::Base #class Search is an object (a class object). I
 
   has_many :user_searches
   has_many :users, :through => :user_searches
+  # has_many :craigslist_items, :through => search_items
 
   accepts_nested_attributes_for :user_searches
 

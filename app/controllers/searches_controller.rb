@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+
   skip_before_filter :verify_authenticity_token, #:only => [:create]
   
 
@@ -50,15 +51,19 @@ class SearchesController < ApplicationController
   def create
     @search = Search.find_or_create_by_url(params[:url])
     puts params
-      user_search = current_user.user_searches.find_or_initialize_by_search_id(@search.id)
-      user_search.email = params[:email]
-      user_search.sms = params[:sms]
-      user_search.title = params[:bookmarkname]
+    user_search = current_user.user_searches.find_or_initialize_by_search_id(@search.id)
+    user_search.email = params[:email]
+    user_search.sms = params[:sms]
+    user_search.title = params[:bookmarkname]
+    
 
     respond_to do |format|
       if user_search.save
         format.html { redirect_to @search, notice: 'Search was successfully created.' }
         format.json { render json: @search, status: :created, location: @search }
+        scraper = CraigslistScraperScript.new(@search.url)
+        @items = scraper.get_data
+        @craigslist_item = CraigslistItem.create(@items)
       else
         format.html { render action: "new" }
         format.json { render json: @search.errors, status: :unprocessable_entity }
